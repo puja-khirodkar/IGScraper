@@ -1,11 +1,10 @@
 package com.instagram.scaper.service;
 
-import com.instagram.scaper.model.User;
+import com.instagram.scaper.model.Users;
 import com.instagram.scaper.repository.IgScraperRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -50,19 +49,20 @@ public class InstagramScrapeService {
         return resultAccounts;
     }
 
-    public List<User> getUsers(){
+    public List<Users> getUsers() {
        return repository.findAll();
     }
 
-    public User getUserById(String userId){
-        return repository.findById(userId).orElse(new User());
+    public Users getUserById(String userId) {
+        return repository.findById(userId).orElse(new Users());
     }
 
-    public void addUser(User user){
+    public void addUser(Users user) {
         repository.save(user);
+        System.out.println("-------User added!" + user + "-------");
     }
 
-    public void updateUser(User user){
+    public void updateUser(Users user) {
         repository.save(user);
     }
     public void deleteUser(String userId){

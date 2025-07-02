@@ -1,0 +1,1 @@
+INSERT INTO USERS(id, userName, name, location) VALUES(1,'puja_chan.wanderer', 'Puja', 'USA') ;
