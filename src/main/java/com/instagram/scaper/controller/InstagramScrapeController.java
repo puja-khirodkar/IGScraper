@@ -3,7 +3,9 @@ package com.instagram.scaper.controller;
 
 import com.instagram.scaper.model.Users;
 import com.instagram.scaper.service.InstagramScrapeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +22,16 @@ public class InstagramScrapeController {
 // public InstagramScrapeController(InstagramScrapeService service) {
 //        this.service = service;
 //    }
+
+    @GetMapping("/")
+    public String getWelcomeMessage(){
+        return "Hello, Welcome to our User Portal!!";
+    }
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getToken(HttpServletRequest request){
+        return (CsrfToken) request.getAttribute("_csrf");
+    }
 
     @GetMapping("/accounts")
     public List<String> getAccounts(@RequestParam(defaultValue = "remotework") String hashtag){
