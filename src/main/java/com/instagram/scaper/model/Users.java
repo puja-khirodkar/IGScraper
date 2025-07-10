@@ -3,28 +3,34 @@ package com.instagram.scaper.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 
 @Entity
-@Data
-@AllArgsConstructor
-@Table(name = "USERS")
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     String username;
-    String name;
-    String location;
+    String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public Users() {
 
     }
 
-    public Users(String userName, String name, String location) {
+    public Users(int id, String userName, String password) {
+        this.id = id;
         this.username = userName;
-        this.name = name;
-        this.location = location;
+        this.password = password;
     }
 
     public int getId() {
@@ -43,19 +49,12 @@ public class Users {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

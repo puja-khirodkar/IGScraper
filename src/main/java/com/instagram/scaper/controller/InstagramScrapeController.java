@@ -45,6 +45,7 @@ public class InstagramScrapeController {
         logger.info("Received request for all users");
         return service.getUsers();
     }
+
      @GetMapping("/user/{userId}")
      public Users getUserById(@PathVariable String userId) {
          logger.info("Received request for user by ID:" + userId);
@@ -63,6 +64,7 @@ public class InstagramScrapeController {
         service.updateUser(user);
         return "User updated successfully";
     }
+
     @DeleteMapping("/users/{userId}")
     public String deleteUser(@PathVariable String userId) {
         logger.info("Received request for delete user");
